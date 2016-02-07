@@ -28,7 +28,7 @@ def get_ndic_with_las():
 
 
 ## open http source
-def secure_open()
+def secure_open(ndic_connect, password_mgr)
     password_mgr.add_password(None, top_level_url, ndic_connect.user_name, ndic_connect.passowrd)
     handler = urllib2.HTTPBasicAuthHandler(password_mgr)
     opener = urllib2.build_opener(handler)
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         for las in las_dict[ndic_file_num]:
             top_level_url = HTTP_PREFIX + las
             lasFileName = las.split('/')[-1]
-            opener = secure_open(ndic_connect)
+            opener = secure_open(ndic_connect, password_mgr)
             ## added try except at 12935, extensions can't read for now
             if  top_level_url[-4:] in  ['.zip','.lnk'] :
                 continue
